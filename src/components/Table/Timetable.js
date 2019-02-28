@@ -1,20 +1,22 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 
+import './Timetable.css'
 
+const timeColumnFormatter = (cell, row ) => {
 
-function timeColumnFormatter(cell, row) {
-
-    console.log(row)
-    if (row.canceled) {
+    if (row.cancelled) {
         return (
-          <div className={'canceled-tag'}>Canceled</div>
+            <div>
+                <div className={'greyed'}>{cell}</div>
+                <div className={'canceled-tag'}>Cancelled</div>
+            </div>
         );
     } else if (row.liveEstimateTime !== '') {
         return (
             <div>
-                <div>$ {row.liveEstimateTime} NTD</div>
-                <div>$ {cell} NTD</div>
+                <div className={'live-estimate'}>{row.liveEstimateTime}</div>
+                <div className={'original-estimate'}>({cell})</div>
             </div>
           );
     } else {
@@ -25,17 +27,33 @@ function timeColumnFormatter(cell, row) {
     }
   }
 
+const canccelledRowFormatter = (cell, row) => {
+    if (row.cancelled) {
+        return (
+            <div className={'greyed'}>{cell}</div>
+        )
+    } else {
+        return (
+            <div className={'normal'}>{cell}</div>
+        )
+    }
+
+}
+
 class Timetable extends React.Component {
 render() {
     const columns = [{
         dataField: 'juna',
-        text: 'Juna'
+        text: 'Juna',
+        formatter: canccelledRowFormatter
       }, {
         dataField: 'lahtoasema',
-        text: 'Lähtöasema'
+        text: 'Lähtöasema',
+        formatter: canccelledRowFormatter
       }, {
         dataField: 'paateasema',
-        text: 'Pääteasema'
+        text: 'Pääteasema',
+        formatter: canccelledRowFormatter
       }, {
         dataField: 'time',
         text: this.props.state,

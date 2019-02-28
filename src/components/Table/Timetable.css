@@ -1,0 +1,17 @@
+
+.greyed {
+    color: #a3a3a3;
+    vertical-align: middle;
+}
+
+.canceled-time {
+
+}
+
+.canceled-tag {
+    color: #ff0000;
+}
+
+.original-estimate {
+    font-size: 14px;
+}
