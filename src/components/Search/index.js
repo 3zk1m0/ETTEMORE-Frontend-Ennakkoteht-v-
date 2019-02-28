@@ -1,33 +1,58 @@
-import React, { Component } from 'react'
-import {Typeahead} from 'react-bootstrap-typeahead';
+import React, { Component, PropTypes } from 'react'
 
+import Select from 'react-select';
 
+import './Search.css'
 
-class Search extends React.Component {
+const STATION_API = 'https://rata.digitraffic.fi/api/v1/metadata/stations';
+
+class Search extends Component {
   state = {
-    multiple: false,
-  };
+    selectedOption: {},
+    stations: [],
+  }
+
+  componentWillMount = () => {
+
+    fetch(STATION_API)
+    .then(response => response.json())
+    .then(data => {
+      let stations = [];
+      data.forEach(element => {
+        stations.push({value: element.stationShortCode, label: element.stationName})
+      });
+      return stations;
+    })
+    .then(data => {
+      this.setState({ stations: data , selectedOption: {value: "TPE", label: "Tampere asema"}});
+      this.handleChange({value: "TPE", label: "Tampere asema"});
+      this.props.setStations(data);
+    })
+  }
+
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    this.props.updateStation(selectedOption.value);
+    //console.log(`Option selected:`, selectedOption);
+  }
 
   render() {
-
-    var options = [
-      {id: 1, label: 'John'},
-      {id: 2, label: 'Miles'},
-      {id: 3, label: 'Charles'},
-      {id: 4, label: 'Herbie'},
-    ];
-
+    const { selectedOption } = this.state;
+    
     return (
-      <>
-        <Typeahead
-          labelKey="name"
-          options={options}
-          placeholder="Choose a state..."
-          clearButton={true}
+      <div>
+        <div className='Header'>
+          Hae Aseman nimellä
+        </div>
+        <Select
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={this.state.stations} 
         />
-      </>
+      </div>
     );
   }
 }
 
-export default Search
+
+export default Search;
