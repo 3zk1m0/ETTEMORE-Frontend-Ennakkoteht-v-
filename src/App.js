@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import NavBar from './components/NavBar';
 import Search from './components/Search';
+import Table from './components/Table'
 
-import Button from 'react-bootstrap/Button';
+
 
 class App extends Component {
+  state = {
+    stations: null,
+    selected: null
+  }
+
+  updateStation = (station) => {
+    this.setState({selected: station});
+  }
+
+  setStations = (stations) => {
+    this.setState({stations});
+  }
+
   render() {
     return (
       <div className="App">
         <NavBar/>
-        <Search/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Button>Test</Button>
-        </header>
+        <div className="Content">
+          <Search updateStation={this.updateStation} setStations={this.setStations}/>
+          <Table station={this.state.selected} stationList={this.state.stations}/>
+        </div>
       </div>
     );
   }

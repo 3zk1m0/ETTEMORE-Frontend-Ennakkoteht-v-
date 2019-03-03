@@ -1,0 +1,61 @@
+
+.greyed {
+    color: #a3a3a3;
+    vertical-align: middle;
+}
+
+.canceled-time {
+
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+
+.canceled-tag {
+    color: #ff0000;
+}
+
+.original-estimate {
+    font-size: 14px;
+}
+
+.direction-tabs {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.direction-tab {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.MainTable {
+    margin-top: 50px;
+}
+.nav-item.nav-link {
+    color: #57A50B;
+}
+
+.nav.direction-tabs.nav.nav-tabs {
+    font-size: 14px;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+
+
+
+/* hot fix */
+
+.table > thead > tr > th:nth-child(1) {
+    font-weight: normal;
+}
+.table > thead > tr > th:nth-child(2) {
+    font-weight: normal;
+}
+.table > thead > tr > th:nth-child(3) {
+    font-weight: normal;
+}
+.table > thead > tr > th:nth-child(4) {
+    font-weight: normal;
+}
