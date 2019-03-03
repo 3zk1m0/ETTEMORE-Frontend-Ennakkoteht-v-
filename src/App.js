@@ -25,8 +25,10 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar/>
-        <Search updateStation={this.updateStation} setStations={this.setStations}/>
-        <Table station={this.state.selected} stationList={this.state.stations}/>
+        <div className="Content">
+          <Search updateStation={this.updateStation} setStations={this.setStations}/>
+          <Table station={this.state.selected} stationList={this.state.stations}/>
+        </div>
       </div>
     );
   }

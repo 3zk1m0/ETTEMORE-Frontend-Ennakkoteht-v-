@@ -10,10 +10,11 @@ import Timetable from './Timetable';
 
 const API_PATH = 'https://rata.digitraffic.fi/api/v1/live-trains/station/'
 
-//const SETTINGS_departure = '?minutes_before_departure=60'
-//const SETTINGS_arrival = '?minutes_before_arrival=60'
-const SETTINGS_departure = '?minutes_before_departure=60&minutes_after_departure=0&minutes_before_arrival=0&minutes_after_arrival=0'
-const SETTINGS_arrival = '?minutes_before_departure=0&minutes_after_departure=0&minutes_before_arrival=60&minutes_after_arrival=0'
+const SELECT_TIME = 60;
+
+
+const SETTINGS_departure = `?minutes_before_departure=${SELECT_TIME}&minutes_after_departure=0&minutes_before_arrival=0&minutes_after_arrival=0`
+const SETTINGS_arrival = `?minutes_before_departure=0&minutes_after_departure=0&minutes_before_arrival=${SELECT_TIME}&minutes_after_arrival=0`
 
 
 
@@ -35,7 +36,6 @@ class Table extends Component {
       fetch(path)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         let tmp = [];
         if (data == null) { return [] };
         data.forEach(element => {
@@ -84,31 +84,17 @@ class Table extends Component {
     render() {
 
       return (
+        <div className="MainTable">
         <Tabs className="direction-tabs" defaultActiveKey="saapuvat">
           <Tab className="direction-tab" eventKey="saapuvat" title="Saapuvat">
             <Timetable data={this.state.arrivalData} state={'Saapuu'}/>
           </Tab>
-          <Tab className="direction-tab" eventKey="lahteva" title="Lähtevä">
+          <Tab className="direction-tab" eventKey="lahtevat" title="Lähtevät">
             <Timetable data={this.state.departureData} state={'Lähtee'}/>
           </Tab>
         </Tabs>
+        </div>
       )
-      /*
-      return (
-        <Tabs>
-        <TabList>
-          <Tab>Saapuvat</Tab>
-          <Tab>Lähtevät</Tab>
-        </TabList>
-    
-        <TabPanel>
-          <Timetable data={this.state.arrivalData} state={'Saapuu'}/>
-        </TabPanel>
-        <TabPanel>
-        <Timetable data={this.state.departureData} state={'Lähtee'}/>
-        </TabPanel>
-      </Tabs>
-      );*/
     }
   }
   
