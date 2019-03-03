@@ -40,7 +40,7 @@ class Search extends Component {
     const { selectedOption } = this.state;
     
     return (
-      <div>
+      <div className='SearchField'>
         <div className='Header'>
           Hae Aseman nimellä
         </div>

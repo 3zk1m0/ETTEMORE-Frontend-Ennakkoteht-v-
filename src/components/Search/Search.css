@@ -3,4 +3,11 @@
 .Header {
     text-align: left;
     font-weight: bold;
+   
+}
+
+.SearchField {
+    width: 200px;
+    margin: 10px;
+    
 }
