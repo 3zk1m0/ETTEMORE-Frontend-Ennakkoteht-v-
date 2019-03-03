@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+//import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 import Timetable from './Timetable';
 
@@ -80,6 +82,18 @@ class Table extends Component {
     }
   
     render() {
+
+      return (
+        <Tabs className="direction-tabs" defaultActiveKey="saapuvat">
+          <Tab className="direction-tab" eventKey="saapuvat" title="Saapuvat">
+            <Timetable data={this.state.arrivalData} state={'Saapuu'}/>
+          </Tab>
+          <Tab className="direction-tab" eventKey="lahteva" title="Lähtevä">
+            <Timetable data={this.state.departureData} state={'Lähtee'}/>
+          </Tab>
+        </Tabs>
+      )
+      /*
       return (
         <Tabs>
         <TabList>
@@ -94,7 +108,7 @@ class Table extends Component {
         <Timetable data={this.state.departureData} state={'Lähtee'}/>
         </TabPanel>
       </Tabs>
-      );
+      );*/
     }
   }
   
