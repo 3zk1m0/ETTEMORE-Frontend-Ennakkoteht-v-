@@ -70,8 +70,8 @@ class Table extends Component {
 
         // Test data
 
-        tmp.push({cancelled: true, juna: "IC 273", lahtoasema: "Helsinki", liveEstimateTime: "", paateasema: "Rovaniemi", time: "01.55"});
-        tmp.push({cancelled: false, juna: "IC 273", lahtoasema: "Helsinki", liveEstimateTime: "01.59", paateasema: "Rovaniemi", time: "01.55"});
+        tmp.push({cancelled: true, juna: "Demo Train", lahtoasema: "Helsinki", liveEstimateTime: "", paateasema: "Rovaniemi", time: "01.55"});
+        tmp.push({cancelled: false, juna: "Demo Train", lahtoasema: "Helsinki", liveEstimateTime: "01.59", paateasema: "Rovaniemi", time: "01.55"});
         
         // Test data end
 
